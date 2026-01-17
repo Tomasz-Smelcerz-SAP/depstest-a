@@ -11,9 +11,15 @@ func main() {
 	container := &container.Container{}
 	container.Elements = append(container.Elements, component)
 
-	err := container.Visit(nil)
+	err := container.Visit(visitComponent)
 	if err != nil {
 		fmt.Println("Error during visit:", err)
 	}
 	fmt.Println("Done.")
 }
+
+func visitComponent(c *component.Component) error {
+	fmt.Println("Visiting component:", c.Name)
+	return nil
+}
+
